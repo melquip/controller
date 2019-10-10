@@ -12,10 +12,21 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const router = express.Router();
+
 router.get('/', (req, res) => {
-	res.writeHead(200, { 'Content-Type': 'text/html' });
-	res.write('<h1>Hello from Controller API!</h1>');
+	res.writeHead(200, { 'Content-Type': 'application/json' });
 	res.end();
+});
+router.get('/users', (req, res) => {
+	res.json(users);
+});
+router.get('/user/:id', (req, res) => {
+	const user = users.filter(user => user.id.toString() === req.params.id);
+	console.log(req.params, user)
+	res.json(user);
+});
+router.get('*', (req, res) => {
+	res.status(404).json({ message: 'no such endpoint' });
 });
 const users = [
 	{
@@ -45,17 +56,6 @@ app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 
-app.get('/users', (req, res) => {
-	res.json(users);
-});
-app.get('/user/:id', (req, res) => {
-	const user = users.filter(user => user.id.toString() === req.params.id);
-	console.log(req.params, user)
-	res.json(user);
-});
-app.get('*', (req, res) => {
-	res.status(404).json({ message: 'no such endpoint' });
-});
 /*
 app.listen(4000, () => {
 	console.log('listening on 4000');
