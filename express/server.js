@@ -12,22 +12,6 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const router = express.Router();
-
-router.get('/', (req, res) => {
-	res.writeHead(200, { 'Content-Type': 'application/json' });
-	res.end();
-});
-router.get('/users', (req, res) => {
-	res.json(users);
-});
-router.get('/user/:id', (req, res) => {
-	const user = users.filter(user => user.id.toString() === req.params.id);
-	console.log(req.params, user)
-	res.json(user);
-});
-router.get('*', (req, res) => {
-	res.status(404).json({ message: 'no such endpoint' });
-});
 const users = [
 	{
 		id: 1,
@@ -52,6 +36,22 @@ const users = [
 	},
 ];
 
+
+router.get('/', (req, res) => {
+	res.writeHead(200, { 'Content-Type': 'application/json' });
+	res.json({ hello: "from controller api!"});
+	res.end();
+});
+router.get('/users', (req, res) => {
+	res.json(users);
+});
+router.get('/user/:id', (req, res) => {
+	const user = users.filter(user => user.id.toString() === req.params.id);
+	res.json(user);
+});
+router.get('*', (req, res) => {
+	res.status(404).json({ message: 'no such endpoint' });
+});
 app.use(bodyParser.json());
 app.use('/.netlify/functions/server', router);  // path must route to lambda
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
