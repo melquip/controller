@@ -38,9 +38,9 @@ const users = [
 
 
 router.get('/', (req, res) => {
-	res.writeHead(200, { 'Content-Type': 'application/json' });
+	//res.writeHead(200, { 'Content-Type': 'application/json' });
 	res.json({ hello: "from controller api!" });
-	res.end();
+	//res.end();
 });
 router.get('/users', (req, res) => {
 	res.json({ users: users });
