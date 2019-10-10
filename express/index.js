@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const uuid = require('uuid');
+const bodyParser = require('body-parser');
 
 const app = express();
 //https://github.com/neverendingqs/netlify-express/
