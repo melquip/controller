@@ -43,7 +43,7 @@ router.get('/', (req, res) => {
 	res.end();
 });
 router.get('/users', (req, res) => {
-	res.json(users);
+	res.json({ users: users });
 });
 router.get('/user/:id', (req, res) => {
 	const user = users.filter(user => user.id.toString() === req.params.id);
