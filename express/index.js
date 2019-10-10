@@ -3,6 +3,7 @@ const cors = require('cors');
 const uuid = require('uuid');
 const bodyParser = require('body-parser');
 const path = require('path');
+const serverless = require('serverless-http');
 
 const app = express();
 //https://github.com/neverendingqs/netlify-express/
@@ -58,3 +59,4 @@ app.listen(4000, () => {
 });
 */
 module.exports = app;
+module.exports.handler = serverless(app);
