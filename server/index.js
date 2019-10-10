@@ -48,8 +48,9 @@ app.get('/user/:id', (req, res) => {
 app.get('*', (req, res) => {
 	res.status(404).json({ message: 'no such endpoint' });
 });
+/*
 app.listen(4000, () => {
 	console.log('listening on 4000');
 });
-
+*/
 module.exports = app;
