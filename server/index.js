@@ -4,26 +4,33 @@ const uuid = require('uuid');
 
 const app = express();
 app.use(express.json());
+app.use(bodyParser.json());
 app.use(cors());
 
+const router = express.Router();
+router.get('/', (req, res) => {
+	res.writeHead(200, { 'Content-Type': 'text/html' });
+	res.write('<h1>Hello from Controller API!</h1>');
+	res.end();
+});
 const users = [
 	{
-		id: 1, 
-		username: "Rui", 
+		id: 1,
+		username: "Rui",
 		data: {
 			temp: 20,
 		}
 	},
 	{
-		id: 2, 
-		username: "Melqui", 
+		id: 2,
+		username: "Melqui",
 		data: {
 			temp: 27,
 		}
 	},
 	{
-		id: 3, 
-		username: "John", 
+		id: 3,
+		username: "John",
 		data: {
 			temp: 16,
 		}
@@ -44,3 +51,5 @@ app.get('*', (req, res) => {
 app.listen(4000, () => {
 	console.log('listening on 4000');
 });
+
+module.exports = app;
