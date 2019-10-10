@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const uuid = require('uuid');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 //https://github.com/neverendingqs/netlify-express/
@@ -39,6 +40,7 @@ const users = [
 	},
 ];
 
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 app.get('/users', (req, res) => {
 	res.json(users);
 });
@@ -50,7 +52,6 @@ app.get('/user/:id', (req, res) => {
 app.get('*', (req, res) => {
 	res.status(404).json({ message: 'no such endpoint' });
 });
-app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
 /*
 app.listen(4000, () => {
 	console.log('listening on 4000');
