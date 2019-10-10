@@ -39,15 +39,18 @@ const users = [
 
 router.get('/', (req, res) => {
 	res.writeHead(200, { 'Content-Type': 'application/json' });
-	res.json({ hello: "from controller api!"});
+	res.json({ hello: "from controller api!" });
 	res.end();
 });
 router.get('/users', (req, res) => {
-	res.json({ users: users });
+
+	res.writeHead(200, { 'Content-Type': 'application/json' });
+	res.status(200).json({ users: users });
 });
 router.get('/user/:id', (req, res) => {
+	res.writeHead(200, { 'Content-Type': 'application/json' });
 	const user = users.filter(user => user.id.toString() === req.params.id);
-	res.json(user);
+	res.status(200).json(user);
 });
 router.get('*', (req, res) => {
 	res.status(404).json({ message: 'no such endpoint' });
