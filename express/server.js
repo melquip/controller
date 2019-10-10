@@ -45,11 +45,13 @@ router.get('/', (req, res) => {
 router.get('/users', (req, res) => {
 	res.writeHead(200, { 'Content-Type': 'application/json' });
 	res.json({ users: users });
+	res.end();
 });
 router.get('/user/:id', (req, res) => {
 	res.writeHead(200, { 'Content-Type': 'application/json' });
 	const user = users.filter(user => user.id.toString() === req.params.id);
 	res.json(user);
+	res.end();
 });
 router.get('*', (req, res) => {
 	res.status(404).json({ message: 'no such endpoint' });
