@@ -3,7 +3,7 @@ import axios from 'axios';
 
 function App() {
   const [users, setUsers] = useState([]);
-  const server = process.env.REACT_APP_API || '';
+  const server = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_API : '';
   useEffect(() => {
     axios.get(server + '/api/users').then(userList => {
       setUsers(userList.data);
