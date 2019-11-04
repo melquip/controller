@@ -3,8 +3,9 @@ import axios from 'axios';
 
 function App() {
   const [users, setUsers] = useState([]);
+  const server = process.env.REACT_APP_API || '';
   useEffect(() => {
-    axios.get('http://localhost:4000/api/users').then(userList => {
+    axios.get(server + '/api/users').then(userList => {
       setUsers(userList.data);
     })
   }, []);
