@@ -19,7 +19,7 @@ server.use(express.json());
 server.use(cors());
 
 server.use('/api/users', userRouter);
-server.use('/api/test', (req, res) => {
+server.get('/api/test', (req, res) => {
   res.json({
     "id": "4y7vad8tv7as8v6s7a8",
     "totalLocals": 1,
