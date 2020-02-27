@@ -21,7 +21,7 @@ router.get('/:id', validateUserId, async (req, res) => {
     const formatSensorField = (value) => {
       currentAddress += 2;
       return {
-        "address": currentAddress,
+        "address": currentAddress.toString(),
         "value": value >= 0 ? `+${value}` : `-${value}`,
       }
     }
@@ -32,11 +32,11 @@ router.get('/:id', validateUserId, async (req, res) => {
       const relevantSensors = allSensors.filter(s => s.localId === local.id);
       return {
         ...local,
-        "number": ++currentLocal,
-        "totalSensors": relevantSensors.length,
+        "number": (++currentLocal).toString(),
+        "totalSensors": relevantSensors.length.toString(),
         "sensors": relevantSensors.map(sensor => ({
           ...sensor,
-          "number": ++currentSensor,
+          "number": (++currentSensor).toString(),
           "type": formatSensorField(sensor.type),
           "dayMin": formatSensorField(sensor.dayMin),
           "dayMax": formatSensorField(sensor.dayMax),
