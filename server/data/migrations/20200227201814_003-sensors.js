@@ -3,11 +3,11 @@ exports.up = function (knex) {
     sensors.increments();
     sensors.string("name", 100).unique().notNullable();
     sensors.integer("number").notNullable();
-    sensors.integer("userId")
+    sensors.integer("localId")
       .unsigned()
       .notNullable()
       .references("id")
-      .inTable("users")
+      .inTable("locals")
       .onDelete("CASCADE")
       .onUpdate("CASCADE");
     sensors.integer("type", 255).unsigned();
